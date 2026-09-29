@@ -8,7 +8,7 @@ class Order
     private User $user;
     private Product $product;
     private int $quantity;
-    private float $totalPrice;
+    private float $totalPrice = 0.0;
 
     public function __construct(User $user, Product $product, int $quantity)
     {
@@ -16,7 +16,6 @@ class Order
         $this->product = $product;
         $this->quantity = $quantity;
         $this->validateQuantity();
-        $this->totalPrice = new OrderCalculator()->calculateOrderPrice($this);
     }
 
     private function validateQuantity(): void
@@ -44,5 +43,10 @@ class Order
     public function getTotalPrice(): float
     {
         return $this->totalPrice;
+    }
+
+    public function setTotalPrice(float $totalPrice): void
+    {
+        $this->totalPrice = $totalPrice;
     }
 }

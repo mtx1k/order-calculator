@@ -37,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = new User('', '', $userType);
         $order = new Order($user, $product, $quantity);
         $orderCalculator = new OrderCalculator();
+        $orderPrice = $orderCalculator->calculateTotalPrice($order);
+        $order->setTotalPrice($orderPrice);
 
         $resultPrice = $orderCalculator->calculateTotalPrice($order);
     } catch (InvalidArgumentException $e) {
