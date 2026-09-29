@@ -2,12 +2,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../src/OrderCalculator.php';
-require_once __DIR__ . '/../src/DiscountCalculator.php';
-require_once __DIR__ . '/../src/Order.php';
-require_once __DIR__ . '/../src/Product.php';
-require_once __DIR__ . '/../src/User.php';
-require_once __DIR__ . '/../src/UserType.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $error = null;
 $resultPrice = null;
