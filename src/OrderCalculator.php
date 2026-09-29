@@ -17,7 +17,7 @@ class OrderCalculator
     {
         $orderPrice = $this->calculateOrderPrice($order);
         $discountCalculator = new DiscountCalculator();
-        $totalDiscount = $discountCalculator->calculateDiscount($order);
+        $totalDiscount = $discountCalculator->calculateDiscount($order, $orderPrice);
         return $orderPrice - $totalDiscount;
     }
 }
