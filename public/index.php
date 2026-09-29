@@ -21,8 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
 
         $productName = $_POST['productName'] ?? '';
-        $productPrice = (float) ($_POST['productPrice'] ?? '');
+        $productPriceInput = $_POST['productPrice'] ?? '';
 
+        if (filter_var($productPriceInput, FILTER_VALIDATE_FLOAT) === false) {
+            throw new InvalidArgumentException('Price must be a number');
+        }
+
+        $productPrice = (float) $productPriceInput;
         $quantityInput = $_POST['quantity'] ?? '';
 
         if (filter_var($quantityInput, FILTER_VALIDATE_INT) === false) {
@@ -37,8 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = new User('', '', $userType);
         $order = new Order($user, $product, $quantity);
         $orderCalculator = new OrderCalculator();
-        //   $orderPrice = $orderCalculator->calculateTotalPrice($order);
-        //   $order->setTotalPrice($orderPrice);
 
         $resultPrice = $orderCalculator->calculateTotalPrice($order);
 
