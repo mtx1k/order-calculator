@@ -5,17 +5,10 @@ declare(strict_types=1);
 class DiscountCalculator
 {
 
-    private Order $order;
-
-    public function __construct(Order $order)
+    public function calculateDiscount(Order $order): float
     {
-        $this->order = $order;
-    }
-
-    public function calculateDiscount(): float
-    {
-        $userType = $this->order->getUser()->getUserType()->getType();
-        $orderPrice = new OrderCalculator()->calculateOrderPrice($this->order);
+        $userType = $order->getUser()->getUserType()->getType();
+        $orderPrice = $order->getTotalPrice();
 
         $totalDiscount = 0.0;
 

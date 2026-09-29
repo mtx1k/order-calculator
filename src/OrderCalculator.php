@@ -16,8 +16,8 @@ class OrderCalculator
     public function calculateTotalPrice(Order $order): float
     {
         $orderPrice = $this->calculateOrderPrice($order);
-        $discountCalculator = new DiscountCalculator($order);
-        $totalDiscount = $discountCalculator->calculateDiscount();
+        $discountCalculator = new DiscountCalculator();
+        $totalDiscount = $discountCalculator->calculateDiscount($order);
         return $orderPrice - $totalDiscount;
     }
 }
