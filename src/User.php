@@ -10,8 +10,8 @@ class User
 
     public function __construct(string $name, string $email, UserType $userType)
     {
-        $this->name = $name ?? '';
-        $this->email = $email ?? '';
+        $this->name = $name;
+        $this->email = $email;
         $this->userType = $userType;
     }
 

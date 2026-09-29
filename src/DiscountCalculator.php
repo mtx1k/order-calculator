@@ -19,12 +19,12 @@ class DiscountCalculator
 
         $totalDiscount = 0.0;
 
-        if ($orderPrice >= 100) {
-            $totalDiscount += $this->calculateFloatPrice($orderPrice, 0.05); // 5% discount for bulk orders
+        if ($orderPrice > 100) {
+            $totalDiscount += $this->calculateFloatPrice($orderPrice, 5); // 5% discount for bulk orders
         }
 
         if ($userType === 'premium') {
-            $totalDiscount += $this->calculateFloatPrice($orderPrice, 0.1); // 10% discount for premium users
+            $totalDiscount += $this->calculateFloatPrice($orderPrice, 10); // 10% discount for premium users
         }
 
         return $totalDiscount; // Return the total discount
@@ -34,7 +34,7 @@ class DiscountCalculator
     {
         $intPrice = (int) ($price * 100);
         $intDiscount = (int) ($discount * 100);
-        $intFinalPrice = $intPrice * $intDiscount;
-        return $intFinalPrice / 100;
+        $intFinalPrice = $intPrice * $intDiscount / 10000; // Calculate the discount amount in cents
+        return (float) $intFinalPrice / 100; // Convert back to euros and return
     }
 }
