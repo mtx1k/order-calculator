@@ -22,10 +22,6 @@ class Order
         if ($this->quantity <= 0) {
             throw new InvalidArgumentException('Quantity cannot be zero or negative');
         }
-
-        if ($this->quantity % 1 !== 0) {
-            throw new InvalidArgumentException('Quantity must be an integer');
-        }
     }
 
     public function getUser(): User

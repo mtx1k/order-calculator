@@ -22,7 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $productName = $_POST['productName'] ?? '';
         $productPrice = (float) ($_POST['productPrice'] ?? '');
-        $quantity = (int) ($_POST['quantity'] ?? '');
+
+        $quantityInput = $_POST['quantity'] ?? '';
+
+        if (filter_var($quantityInput, FILTER_VALIDATE_INT) === false) {
+            throw new InvalidArgumentException('Quantity must be an integer');
+        }
+
+        $quantity = (int) $quantityInput;
         $clientType = $_POST['clientType'] ?? 'regular';
 
         $product = new Product($productName, $productPrice);
