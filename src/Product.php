@@ -12,11 +12,19 @@ class Product
         $this->name = $name;
         $this->price = $price;
         $this->validatePrice();
+        $this->validateName();
     }
     private function validatePrice(): void
     {
         if ($this->price <= 0) {
             throw new InvalidArgumentException('Price cannot be zero or negative');
+        }
+    }
+
+    private function validateName(): void
+    {
+        if (trim($this->name) === '') {
+            throw new InvalidArgumentException('Product name cannot be empty');
         }
     }
 

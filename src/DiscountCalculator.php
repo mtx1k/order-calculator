@@ -32,9 +32,9 @@ class DiscountCalculator
 
     private function calculateFloatPrice(float $price, float $discount): float
     {
-        $intPrice = (int) round($price * 100);
-        $intDiscount = (int) ($discount * 100);
-        $intFinalPrice = $intPrice * $intDiscount / 10000; // Calculate the discount amount in cents
-        return (float) $intFinalPrice / 100; // Convert back to euros and return
+        $priceCents = (int) round($price * 100);
+        $discountCents = (int) round($priceCents * $discount / 100);
+
+        return $discountCents / 100;
     }
 }
