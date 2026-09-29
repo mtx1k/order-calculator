@@ -7,7 +7,7 @@ class OrderCalculator
 
     public function calculateOrderPrice(Order $order): float
     {
-        $price = (int) ($order->getProduct()->getPrice() * 100);
+        $price = (int) round($order->getProduct()->getPrice() * 100);
         $quantity = $order->getQuantity();
         $intTotalPrice = $price * $quantity;
         return $intTotalPrice / 100;

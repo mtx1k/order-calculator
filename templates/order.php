@@ -18,7 +18,7 @@
                 type="text"
                 id="productName"
                 name="productName"
-                value="<?= htmlspecialchars((string) $productName) ?>"
+                value="<?= htmlspecialchars($productName) ?>"
                 required>
         </p>
 
@@ -30,7 +30,7 @@
                 name="productPrice"
                 step="0.01"
                 min="0"
-                value="<?= htmlspecialchars((string) $productPrice) ?>"
+                value="<?= htmlspecialchars($productPrice) ?>"
                 required>
         </p>
 
@@ -42,15 +42,22 @@
                 name="quantity"
                 min="1"
                 step="1"
-                value="<?= htmlspecialchars((string) $quantity) ?>"
+                value="<?= htmlspecialchars($quantity) ?>"
                 required>
         </p>
 
         <p>
             <label for="clientType">Kundentyp:</label><br>
             <select id="clientType" name="clientType">
-                <option value="regular">Regular</option>
-                <option value="premium">Premium</option>
+                <option value="regular"
+                    <?= $clientType === 'regular' ? 'selected' : '' ?>>
+                    Regular
+                </option>
+
+                <option value="premium"
+                    <?= $clientType === 'premium' ? 'selected' : '' ?>>
+                    Premium
+                </option>
             </select>
         </p>
 

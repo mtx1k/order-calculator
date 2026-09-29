@@ -12,17 +12,25 @@ require_once __DIR__ . '/../src/UserType.php';
 $error = null;
 $resultPrice = null;
 
-
+$productName = '';
+$productPrice = '';
+$quantity = '';
+$clientType = 'regular';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $product = new Product($_POST['productName'] ?? '', (float) ($_POST['productPrice'] ?? 0));
-    $userType = new UserType($_POST['clientType'] ?? '');
-    $user = new User('', '', $userType);
-    $order = new Order($user, $product, (int) ($_POST['quantity'] ?? 0));
-    $orderCalculator = new OrderCalculator();
-
     try {
+
+        $productName = $_POST['productName'] ?? '';
+        $productPrice = (float) ($_POST['productPrice'] ?? '');
+        $quantity = (int) ($_POST['quantity'] ?? '');
+        $clientType = $_POST['clientType'] ?? 'regular';
+
+        $product = new Product($productName, $productPrice);
+        $userType = new UserType($clientType);
+        $user = new User('', '', $userType);
+        $order = new Order($user, $product, $quantity);
+        $orderCalculator = new OrderCalculator();
+
         $resultPrice = $orderCalculator->calculateTotalPrice($order);
     } catch (InvalidArgumentException $e) {
         $error = $e->getMessage();

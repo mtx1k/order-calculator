@@ -15,7 +15,7 @@ class UserType
 
     private function validateType(): void
     {
-        if (!in_array($this->type, ['regular', 'premium'])) {
+        if (!in_array($this->type, ['regular', 'premium'], true)) {
             throw new InvalidArgumentException('Invalid user type');
         }
     }
